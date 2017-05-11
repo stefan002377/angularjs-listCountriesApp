@@ -1,0 +1,27 @@
+<form class="form">
+   <div class="form-group">
+        <label for="formGroupExampleInput">{{appSetting.appFilterCounty}}</label>
+        <input type="text" class="form-control" ng-model="customerFilter.name">
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th ng-click="doSort('name')">{{appSetting.appCountryCol1}}</th>
+            <th ng-click="doSort('populatia')">{{appSetting.appCountryCol2}}</th>
+            <th ng-click="doSort('capitala')">{{appSetting.appCountryCol3}}</th>
+            <th ng-click="doSort('densitatea')">{{appSetting.appCountryCol4}}</th>
+            <th>{{appSetting.appCountryCol5}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in county | filter:customerFilter | orderBy:sortBy:reverse">
+            <td>{{ c.name | uppercase }}</td>
+            <td>{{ c.populatia | number }}</td>
+            <td>{{ c.capitala | uppercase }}</td>
+            <td>{{ c.densitatea | number }}</td>
+            <td><a href="#/country/{{ c.countyid | number }}">{{appSetting.appLinkCity}}</a></td>
+        </tr>
+    </tbody>
+</table>
+<span>{{appSetting.appNumberCountries}}  {{county.length}}</span>

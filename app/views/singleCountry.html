@@ -1,0 +1,21 @@
+<form class="form">
+   <div class="form-group">
+        <label for="formGroupExampleInput">{{appSetting.appFilterCity}}: {{nameCity}}</label>
+        <input type="text" class="form-control" ng-model="customerFilter.name">
+    </div>
+</form>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th ng-click="doSort('name')">{{appSetting.appCityCol1}}</th>
+            <th ng-click="doSort('populatia')">{{appSetting.appCityCol2}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="c in cities | filter:customerFilter | orderBy:sortBy:reverse">
+            <td>{{ c.name | uppercase }}</td>
+            <td>{{ c.populatia | number }}</td>
+        </tr>
+    </tbody>
+</table>
+<span>{{appSetting.appNumberCities}}  {{cities.length}}</span>
